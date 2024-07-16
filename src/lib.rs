@@ -14,6 +14,7 @@ pub fn add(left: usize, right: usize) -> usize {
 
 /// When given the size of each slab, as a vec, it will return the slabs, with an extra element
 /// for the infinite range.
+/// The reason it is done like that is because there can be disagreements between whether the slab sizes are inclusive or exclusive and having a delta forces the implementer to address this ambiguity
 ///
 /// Example
 /// ```rust
