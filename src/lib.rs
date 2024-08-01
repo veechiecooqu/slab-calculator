@@ -1,18 +1,6 @@
 //! Generates slabs given the size of each slabs as an array.
 #![warn(missing_docs)]
-
-/// Add two numbers given their left and rights.
-///
-/// Example
-/// ```rust
-/// # use slab_calculator::add;
-/// let result = add(2, 2);
-/// ```
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
-}
-
-/// When given the size of each slab, as a vec, it will return the slabs, with an extra element
+/// When given the size of each slab, it will return the slabs, with an extra element
 /// for the infinite range.
 /// The reason it is done like that is because there can be disagreements between whether the slab sizes are inclusive or exclusive and having a delta forces the implementer to address this ambiguity
 ///
@@ -21,7 +9,7 @@ pub fn add(left: usize, right: usize) -> usize {
 /// # use slab_calculator::slabbed_values;
 /// let slab_result = slabbed_values(&vec![2, 3, 2, 2], 3);
 /// ```
-pub fn slabbed_values(slabs: &Vec<u32>, num: u32) -> Vec<u32> {
+pub fn slabbed_values(slabs: &[u32], num: u32) -> Vec<u32> {
     let mut generated_slabs = Vec::new();
     let mut remainder = num;
     for &slab in slabs {
@@ -41,12 +29,6 @@ pub fn slabbed_values(slabs: &Vec<u32>, num: u32) -> Vec<u32> {
 #[cfg(test)]
 mod tests {
     use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
 
     #[test]
     fn slab_test() {
