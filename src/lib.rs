@@ -7,15 +7,15 @@
 /// Example
 /// ```rust
 /// # use slab_calculator::slabbed_values;
-/// let slab_result = slabbed_values(&vec![2, 3, 2, 2], 3);
+/// let slab_result = slabbed_values(&[2, 3, 2, 2], 3);
 /// ```
-pub fn slabbed_values(slabs: &[u32], num: u32) -> Vec<u32> {
+pub fn slabbed_values(slabs: &[i32], num: i32) -> Vec<i32> {
     let mut generated_slabs = Vec::new();
     let mut remainder = num;
     for &slab in slabs {
         if remainder <= slab {
             generated_slabs.push(remainder);
-            remainder = 0; // let's just assume the remainders are flushed for the final slab of
+            remainder = 0; // Let's just assume the remainders are flushed for the final slab of
                            // infinity
         } else {
             generated_slabs.push(slab);
@@ -32,13 +32,13 @@ mod tests {
 
     #[test]
     fn slab_test() {
-        let slab_result = slabbed_values(&vec![2, 3, 2, 2], 3);
+        let slab_result = slabbed_values(&[2, 3, 2, 2], 3);
         assert_eq!(slab_result, vec![2, 1, 0, 0, 0])
     }
 
     #[test]
     fn slab_bigger_than_limit() {
-        let slab_result = slabbed_values(&vec![2, 3, 2, 2], 13);
+        let slab_result = slabbed_values(&[2, 3, 2, 2], 13);
         assert_eq!(slab_result, vec![2, 3, 2, 2, 4]);
     }
 }
